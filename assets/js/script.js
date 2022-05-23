@@ -44,17 +44,24 @@ var saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
+// the task text was clicked
 $(".list-group").on("click", "p", function() {
+  // get current text of the p element
   var text = $(this)
   .text()
   .trim();
+
+  // replace p element with a new textarea
   var textInput = $("<textarea>")
   .addClass("form-control")
   .val(text);
   $(this).replaceWith(textInput);
+
+  // auto focus new element
   textInput.trigger("focus");
 });
 
+// editable field was un-focused
 $(".list-group").on("blur", "textarea", function() {
   // get the textarea's current value/text
   var text = $(this)
